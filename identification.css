@@ -1,76 +1,134 @@
+/* Style global */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Dégradé moderne */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  color: #333;
+}
+
+/* Conteneur principal */
+.login-container {
+  background-color: #fff;
+  padding: 40px 50px; /* Plus d'espace interne */
+  border-radius: 15px; /* Angles arrondis plus modernes */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement entre les enfants */
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
   }
-  
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Champs de saisie */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacement entre label et input */
+  margin-bottom: 15px; /* Espacement supplémentaire */
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6a11cb;
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+}
+
+/* Bouton de soumission */
+.btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+}
+
+/* Liens en bas */
+.links {
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacement entre les liens */
+}
+
+.links a {
+  color: #2575fc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 600;
+}
+
+.links a:hover {
+  color: #6a11cb;
+  text-decoration: underline;
+}
+
+/* Design responsive */
+@media (max-width: 768px) {
   .login-container {
-    background-color: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+      padding: 20px;
+      gap: 15px; /* Réduit l'espace entre les enfants sur petit écran */
   }
-  
+
   h2 {
-    text-align: center;
-    margin-bottom: 20px;
+      font-size: 1.8rem;
   }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-  }
-  
-  input:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
+
   .btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
+      font-size: 0.9rem;
   }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .links {
-    text-align: center;
-    margin-top: 10px;
-  }
-  
-  .links a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 14px;
-  }
-  
-  .links a:hover {
-    text-decoration: underline;
-  }
-  
+}
