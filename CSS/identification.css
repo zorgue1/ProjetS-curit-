@@ -1,7 +1,8 @@
-/* Style global */
+/* Style global */ 
 body {
   font-family: 'Poppins', Arial, sans-serif;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Dégradé moderne */
+  background: url('../images/ligneCode.jpg') no-repeat center center fixed;
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +13,7 @@ body {
 
 /* Conteneur principal */
 .login-container {
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.6); /* Transparence pour laisser apparaître l'arrière-plan */
   padding: 40px 50px; /* Plus d'espace interne */
   border-radius: 15px; /* Angles arrondis plus modernes */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
@@ -71,15 +72,15 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #6a11cb;
-  box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+  border-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
 }
 
 /* Bouton de soumission */
 .btn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  background: linear-gradient(135deg, #005a00, #00b400); /* Dégradé vert foncé */
   color: white;
   border: none;
   border-radius: 8px;
@@ -92,8 +93,8 @@ input:focus {
 }
 
 .btn:hover {
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-  box-shadow: 0 5px 15px rgba(37, 117, 252, 0.4);
+  background: linear-gradient(135deg, #00b400, #005a00); /* Inversion du dégradé au survol */
+  box-shadow: 0 5px 15px rgba(0, 180, 0, 0.4); /* Effet lumineux vert */
 }
 
 /* Liens en bas */
@@ -106,14 +107,14 @@ input:focus {
 }
 
 .links a {
-  color: #2575fc;
+  color: #4caf50;
   text-decoration: none;
   transition: color 0.3s ease;
   font-weight: 600;
 }
 
 .links a:hover {
-  color: #6a11cb;
+  color: #005a00;
   text-decoration: underline;
 }
 
