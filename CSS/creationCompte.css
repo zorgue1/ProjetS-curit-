@@ -1,66 +1,135 @@
+/* Style global */ 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: url('../images/ligneCode.jpg') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-}
-
-.signup-container {
-    background-color: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-}
-
-h2 {
+    color: #fff; /* Texte par défaut en blanc */
+  }
+  
+  /* Conteneur principal */
+  .form-container {
+    background: rgba(255, 255, 255, 0.1); /* Transparence légère pour laisser apparaître l'arrière-plan */
+    padding: 30px 40px; /* Réduction des marges */
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Ombre douce */
+    width: 90%; /* Réduction de la largeur */
+    max-width: 360px; /* Largeur maximale réduite */
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacement entre les éléments */
+  }
+  
+  /* Animation d'apparition */
+  @keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  /* Titre */
+  h2 {
     text-align: center;
+    font-size: 2rem;
+    color: #fff; /* Titre en blanc */
     margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  /* Champs de saisie */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #fff; /* Labels en blanc */
+  }
+  
+  input {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-input:focus {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
     outline: none;
-    border-color: #007bff;
-}
-
-.btn {
+    border-color: #4caf50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Boutons */
+  .btn {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 15px;
+    background: linear-gradient(135deg, #005a00, #00b400); /* Dégradé vert foncé */
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
     cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .btn:hover {
+    background: linear-gradient(135deg, #00b400, #005a00); /* Inversion du dégradé */
+    box-shadow: 0 5px 15px rgba(0, 180, 0, 0.4); /* Effet lumineux vert */
+  }
+  
+  /* Liens */
+  .links {
+    text-align: center;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .links a {
+    color: #4caf50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 600;
+  }
+  
+  .links a:hover {
+    color: #005a00;
+    text-decoration: underline;
+  }
+  
+  /* Design responsive */
+  @media (max-width: 768px) {
+    .form-container {
+        padding: 20px;
+        gap: 15px; /* Réduction de l'espace entre les enfants sur petit écran */
+    }
+  
+    h2 {
+        font-size: 1.8rem;
+    }
+  
+    .btn {
+        font-size: 0.9rem;
+    }
+  }
+  
