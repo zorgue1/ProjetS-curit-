@@ -1,7 +1,7 @@
 # ProjetS-curit-
 
 Pour la première étape du projet nous devons créer les pages sur lesquelles nous allons travailler par la suite.
-Nous avons déjà réalisé les pages d'acceuil, identification, et qui sommes nous (il reste le link à compléter pour rendre la page cliquable [Alex]).
+Nous avons déjà réalisé les pages d'acceuil, identification, et qui sommes nous .
 Voici les pages qu'il reste à réaliser :
 - page d'acceuil après identification 
 - boutton sur la page d'acceuill qui renvoie à une page --> qui catégorise les différents types de défis [Leo]

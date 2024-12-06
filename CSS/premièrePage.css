@@ -1,0 +1,93 @@
+/* Style global */
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(135deg, #000000, #005a00);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  /* Conteneur principal */
+  .container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Section des informations utilisateur */
+  .user-info {
+    margin-bottom: 50px;
+  }
+  
+  .user-info h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .user-info span {
+    color: #00ff00;
+    font-weight: bold;
+  }
+  
+  /* Barre de progression */
+  .progress-section {
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  .progress-section label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .progress-container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #progress-bar {
+    background: linear-gradient(90deg, #00ff00, #007700);
+    height: 100%;
+    width: 0%; /* Dynamique : à ajuster avec JS */
+    transition: width 0.5s ease-in-out;
+    border-radius: 15px;
+  }
+  
+  /* Texte des points */
+  .progress-section p {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Bouton central */
+  .challenge-button {
+    margin-top: 50px;
+  }
+  
+  .challenge-button .btn {
+    background: linear-gradient(135deg, #00b400, #005a00);
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .challenge-button .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+  }
+  
