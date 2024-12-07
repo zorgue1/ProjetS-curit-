@@ -132,4 +132,30 @@ body {
         font-size: 0.9rem;
     }
   }
+
+  /* Bouton Retour */
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.back-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #00b400, #005a00);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.back-button a:hover {
+  background: linear-gradient(135deg, #00b400, #005a00); /* Inversion du dégradé */
+  box-shadow: 0 5px 15px rgba(0, 180, 0, 0.4); /* Effet lumineux vert */
+  color: white;
+}
+
   

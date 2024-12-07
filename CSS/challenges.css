@@ -1,130 +1,170 @@
 /* Style global */
 body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background: linear-gradient(135deg, #1a1a1a, #333);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-y: auto; /* Permet le défilement si nécessaire */
-  }
-  /* Titre principal */
-.title-container {
-    text-align: center; /* Centrer le titre */
-    margin-bottom: 30px; /* Espacement entre le titre et le reste */
-  }
-  
-  .title-container h1 {
-    font-size: 3rem; /* Taille du titre */
-    background: linear-gradient(135deg, #00ff00, #007f00); /* Dégradé vert */
-    -webkit-background-clip: text; /* Clipping pour texte */
-    -webkit-text-fill-color: transparent; /* Couleur transparente pour le dégradé */
-    text-transform: uppercase; /* Tout en majuscules */
-    font-family: 'Poppins', sans-serif; /* Police moderne */
-  }
-  
-  /* Boîte semi-transparente */
-  .text-box {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 20px; /* Espacement interne */
-    max-width: 600px; /* Largeur maximale */
-    margin: 0 auto; /* Centrage horizontal */
-    color: white; /* Couleur du texte */
-    font-family: 'Courier New', Courier, monospace; /* Style machine à écrire */
-    line-height: 1.5; /* Espacement entre les lignes */
-    word-wrap: break-word; /* Gère les retours à la ligne pour mots longs */
-    overflow-wrap: break-word;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Ombre subtile */
-  }
-  
-  
-  /* Conteneur principal */
-  .container {
-    display: flex;
-    width: 80%;
-    max-width: 1200px;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px 0;
-  }
-  
-  /* Section des boutons */
-  .button-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 40%;
-  }
-  
-  .category-btn {
-    width: 80%;
-    padding: 15px;
-    background: linear-gradient(135deg, #006400, #00ff00);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .category-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-  }
-  
-  /* Section du texte */
-  .text-section {
-    width: 55%;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    text-align: justify;
-    position: relative;
-  }
-  
-  #animated-text {
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid white;
-    font-family: 'Courier New', Courier, monospace;
-    animation: typing 5s steps(60, end), blink 0.75s step-end infinite;
-  }
-  
-  /* Animations */
-  @keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-  }
-  
-  @keyframes blink {
-    from, to { border-color: transparent; }
-    50% { border-color: white; }
-  }
-
- .text-box {
-  background-color: rgba(0, 0, 0, 0.6); /* Boîte semi-transparente */
-  border-radius: 10px; /* Coins arrondis */
-  padding: 20px; /* Espacement interne */
-  max-width: 600px; /* Largeur maximale pour éviter un étalement excessif */
-  margin: 0 auto; /* Centrage horizontal */
-  color: white; /* Couleur du texte */
-  font-family: 'Courier New', Courier, monospace; /* Police type machine à écrire */
-  white-space: pre-wrap; /* Respect des sauts de ligne */
-  overflow: hidden; /* Assure qu’il n’y ait pas de débordement */
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #1a1a1a, #333); /* Fond sombre avec dégradé */
+  color: white;
+  display: flex;
+  flex-direction: column; /* Aligne les éléments verticalement */
+  min-height: 100vh;
+  overflow-y: auto; /* Permet le défilement si nécessaire */
 }
-#animated-text {
-    white-space: normal; /* Permet le retour à la ligne automatique */
-    word-wrap: break-word; /* Gère les mots longs */
-    overflow-wrap: break-word; /* Compatibilité supplémentaire */
-    color: white; /* Assure la lisibilité */
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    line-height: 1.5; /* Espacement entre les lignes pour plus de lisibilité */
-  }
-  
 
-  
+/* Header */
+header {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  color: #fff;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between; /* Espace entre le logo et les boutons */
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre subtile */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-buttons button {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Titre principal */
+.title-container {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title-container h1 {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #00ff00, #007f00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Boîte semi-transparente */
+.text-box {
+  background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto; /* Centrage horizontal */
+  color: white;
+  font-family: 'Courier New', Courier, monospace; /* Style machine à écrire */
+  white-space: pre-wrap; /* Respect des sauts de ligne */
+  line-height: 1.5; /* Espacement entre les lignes */
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Conteneur principal */
+.container {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  margin: 0 auto; /* Centrage */
+}
+
+/* Section des boutons */
+.button-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 40%;
+}
+
+.category-btn {
+  width: 80%;
+  padding: 15px;
+  background: linear-gradient(135deg, #006400, #00ff00);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+}
+
+/* Section du texte */
+.text-section {
+  width: 55%;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: justify;
+  position: relative;
+}
+
+#animated-text {
+  white-space: normal; /* Permet le retour à la ligne automatique */
+  word-wrap: break-word; /* Gère les mots longs */
+  overflow-wrap: break-word; /* Compatibilité supplémentaire */
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: white; }
+}
+
+.text-box {
+  background-color: rgba(0, 0, 0, 0.6); /* Boîte semi-transparente */
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  overflow: hidden;
+}

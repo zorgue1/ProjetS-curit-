@@ -8,22 +8,41 @@
 </head>
 <body>
 
-      
-  <div class="container">
-    <!-- Section des boutons -->
-    <div class="button-section">
-      <button onclick="window.location.href='listeCrypto.html'" class="category-btn">Cryptology</button>
-      <button onclick="window.location.href='listeWeb.html'" class="category-btn">Web</button>
-      <button onclick="window.location.href='listeForensic.html'" class="category-btn">Forensic</button>
-      <button onclick="window.location.href='listeNetwork.html'" class="category-btn">Network</button>
+  <header>
+    <div class="navbar">
+      <h1 class="logo">Challenge</h1>
+      <div class="nav-buttons">
+        <button onclick="window.location.href='challenges.html'">Catégories</button>
+        <button onclick="window.location.href=''">Leaderboard</button>
+        <button onclick="window.location.href='premièrePage.html'">Mon espace</button>
+      </div>
     </div>
+  </header>
 
-    <div class="text-box">
-        <p id="animated-text"></p>
+  <main>
+    <div class="container">
+      <!-- Section des boutons -->
+      <div class="button-section">
+        <button onclick="window.location.href='listeCrypto.html'" class="category-btn">Cryptology</button>
+        <button onclick="window.location.href='listeWeb.html'" class="category-btn">Web</button>
+        <button onclick="window.location.href='listeForensic.html'" class="category-btn">Forensic</button>
+        <button onclick="window.location.href='listeNetwork.html'" class="category-btn">Network</button>
+      </div>
+  
+      <div class="text-box">
+          <p id="animated-text"></p>
+      </div>
+        
     </div>
-      
-  </div>
+  
+    <script src="../JS/challenges.js"></script>
 
-  <script src="../JS/challenges.js"></script>
+
+
+
+
+  </main>   
+  
+   
 </body>
 </html>
