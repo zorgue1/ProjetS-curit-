@@ -9,12 +9,16 @@
 <body>
 
   <div class="back-button">
-    <a href="accueil.html">Retour</a>
+    <a href="../index.html">Retour</a>
   </div>
 
 
   <div class="form-container">
-    <form action="/create-account" method="POST">
+    <form action="PHP/test_register.php" method="POST">
+
+
+
+
       <h2>Créer un Compte</h2>
       <div class="input-group">
         <label for="prenom">Prénom :</label>
@@ -36,7 +40,8 @@
         <label for="confirm-password">Confirmer le mot de passe :</label>
         <input type="password" id="confirm-password" name="confirm-password" required>
       </div>
-      <button type="submit" class="btn">Créer un Compte</button>
+      <button type="submit">Créer un Compte</button>
+
     </form>
   </div>
 </body>

@@ -1,42 +1,34 @@
 <?php
-// Détails de connexion à la base de données PostgreSQL
-$host = "localhost";       // Adresse du serveur PostgreSQL
-$dbname = "Project";       // Nom de la base de données PostgreSQL
-$username = "postgres";    // Nom d'utilisateur PostgreSQL
-$password = "password";    // Mot de passe PostgreSQL
+// Inclure le fichier de connexion à la base de données
+include 'db_connect.php';
 
-try {
-    // Connexion à la base de données PostgreSQL
-    $pdo = new PDO("pgsql:host=$host;port=5432;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion à la base de données : " . $e->getMessage());
-}
-
-// Vérification si le formulaire a été soumis
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Vérifiez que la méthode HTTP est POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Requête préparée pour éviter les injections SQL
-    $sql = "SELECT * FROM users WHERE email = :email";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+    // Préparer une requête SQL pour vérifier l'utilisateur
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
-    // Vérification des résultats
-    if ($stmt->rowCount() > 0) {
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Vérifiez si l'utilisateur existe et que le mot de passe est correct
+    if ($user && password_verify($password, $user['password'])) {
+        // Démarrer une session pour gérer l'utilisateur connecté (optionnel)
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['prenom'];
 
-        // Vérification du mot de passe (utilisation de password_verify)
-        if (password_verify($password, $user['password'])) {
-            echo "<p>Connexion réussie !</p>";
-        } else {
-            echo "<p>Erreur : Mot de passe incorrect.</p>";
-        }
+        // Redirection vers la page 'premièrePage.html'
+        header("Location: ../HTML/premièrePage.html");
+        exit();
     } else {
-        echo "<p>Erreur : Adresse e-mail incorrecte.</p>";
-    }
+        // Si les identifiants sont incorrects, redirigez vers la page de connexion avec un message d'erreur
+        echo "Identifiants incorrects.";
+    }
+} else {
+    // Si la méthode n'est pas POST, affichez un message d'erreur
+    echo "Méthode non autorisée.";
 }
-
 ?>
