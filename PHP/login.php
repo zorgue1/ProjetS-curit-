@@ -1,35 +1,28 @@
 <?php
-// Inclure la connexion à la base de données
-include 'db_connect.php';
+session_start();
+include 'database_connection.php'; // Modifiez selon votre configuration
 
-// Activez les erreurs pour déboguer (optionnel)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
+// Récupération des données de l'utilisateur depuis la base
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Vérifier l'utilisateur
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    $stmt = $conn->prepare("SELECT id, prenom, nom FROM users WHERE email = ? AND password = ?");
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($user && password_verify($password, $user['password'])) {
-        // Démarrer la session
-        session_start();
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
-        $_SESSION['prenom'] = $user['prenom'];
-        $_SESSION['nom'] = $user['nom'];
+        $_SESSION['user_prenom'] = $user['prenom'];
+        $_SESSION['user_nom'] = $user['nom'];
 
-        // Rediriger vers la première page
-        header("Location: ../HTML/premièrePage.html");
+        // Redirection vers la page principale
+        header("Location: premièrePage.php");
         exit();
     } else {
-        echo "Identifiants incorrects.";
+        echo "Identifiants invalides.";
     }
-} else {
-    echo "Méthode non autorisée.";
 }
 ?>

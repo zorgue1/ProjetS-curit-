@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Vérification si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: .//index.html");
+    exit();
+}
+
+$prenom = $_SESSION['user_prenom'];
+$nom = $_SESSION['user_nom'];
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,16 +20,14 @@
   <link rel="stylesheet" href="../CSS/premièrePage.css">
 </head>
 <body>
-
-
   <div class="deconnexion-button">
-    <a href="../index.html">Déconnexion</a>
+    <a href="logout.php">Déconnexion</a>
   </div>
 
   <div class="container">
     <!-- Informations de l'utilisateur -->
     <div class="user-info">
-      <h1>Bienvenue, <span id="user-name">Nom Prénom</span> !</h1>
+      <h1>Bienvenue, <span id="user-name"><?php echo htmlspecialchars("$prenom $nom"); ?></span> !</h1>
       <div class="progress-section">
         <label for="progress-bar">Progression :</label>
         <div class="progress-container">
@@ -28,7 +39,7 @@
 
     <!-- Bouton central -->
     <div class="challenge-button">
-      <a href="challenges.html" class="btn">Challenge TOI !</a>
+      <a href="../HTML/challenges.html" class="btn">Challenge TOI !</a>
       <a href="" class="btn">Leaderboard</a>
     </div>
   </div>
