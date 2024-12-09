@@ -1,13 +1,14 @@
 <?php
-$host = 'localhost';
-$dbname = 'ctf_challenge'; // Nom de votre base de données
-$username = 'root'; // Nom d'utilisateur par défaut pour XAMPP
-$password = ''; // Mot de passe par défaut pour XAMPP (vide)
+$host = "localhost";
+$username = "root";
+$password = ""; // Par défaut, pas de mot de passe pour XAMPP
+$dbname = "ctf_challenge";
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
+// Connexion à la base de données
+$conn = new mysqli($host, $username, $password, $dbname);
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Échec de la connexion : " . $conn->connect_error);
 }
 ?>
