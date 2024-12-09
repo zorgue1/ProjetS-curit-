@@ -1,0 +1,139 @@
+/* Style global */
+body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: url('../images/anonymous2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+/* Header - Navbar */
+header {
+    background-color: rgba(0, 0, 0, 1); 
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-buttons button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-buttons button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Leaderboard Section */
+.leaderboard-section {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(0, 0, 0, 0.6); /* Fond transparent */
+    border-radius: 15px;
+    color: #fff;
+    max-width: 900px;
+    margin: 100px auto;
+}
+
+.leaderboard-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.leaderboard-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Table Style */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.leaderboard-table thead {
+    background-color: #000;
+}
+
+.leaderboard-table thead th {
+    color: #fff;
+    padding: 15px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.leaderboard-table tbody {
+    color: #fff;
+}
+
+.leaderboard-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-table tbody td {
+    padding: 15px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.leaderboard-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .leaderboard-section h2 {
+        font-size: 2rem;
+    }
+
+    .leaderboard-section p {
+        font-size: 1rem;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .leaderboard-table thead th, .leaderboard-table tbody td {
+        font-size: 0.9rem;
+    }
+}
