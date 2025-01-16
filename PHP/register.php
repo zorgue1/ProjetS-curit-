@@ -2,33 +2,41 @@
 // Inclure le fichier de connexion à la base de données
 include 'db_connect.php';
 
-// Vérifiez la méthode HTTP
+// Vérifier que les données sont envoyées en POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die("Méthode non autorisée. Méthode utilisée : " . $_SERVER['REQUEST_METHOD']);
 }
 
 // Récupérer les données du formulaire
-$prenom = $_POST['prenom'];
-$nom = $_POST['nom'];
-$email = $_POST['email'];
+$prenom = trim($_POST['firstname']);
+$nom = trim($_POST['lastname']);
+$email = trim($_POST['email']);
 $password = $_POST['password'];
-$confirmPassword = $_POST['confirm-password'];
+$confirmPassword = $_POST['confirmPassword'];
 
-// Vérifier les mots de passe
+// Vérification des mots de passe
 if ($password !== $confirmPassword) {
     die("Les mots de passe ne correspondent pas.");
 }
 
-// Hash du mot de passe
+// Hasher le mot de passe
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-// Insérer dans la base de données
-$stmt = $pdo->prepare("INSERT INTO users (prenom, nom, email, password) VALUES (?, ?, ?, ?)");
 try {
-    $stmt->execute([$prenom, $nom, $email, $hashedPassword]);
-    header("Location: ../HTML/premièrePage.html");
+    // Préparer la requête SQL
+    $stmt = $conn->prepare("INSERT INTO users (prenom, nom, email, password) VALUES (:prenom, :nom, :email, :password)");
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $hashedPassword);
+
+    // Exécuter la requête
+    $stmt->execute();
+
+    // Redirection après succès
+    header("Location: ../PHP/premièrePage.php");
     exit();
 } catch (PDOException $e) {
-    die("Erreur : " . $e->getMessage());
+    die("Erreur lors de la création du compte : " . $e->getMessage());
 }
 ?>

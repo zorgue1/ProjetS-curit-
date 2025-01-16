@@ -1,13 +1,3 @@
-<?php
-session_start();
-
-// Si l'utilisateur n'est pas connecté, rediriger vers index.html
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../index.html');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
   <div class="container">
     <!-- Informations de l'utilisateur -->
     <div class="user-info">
-      <h1>Bienvenue, <span id="user-name"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?></span></h1>
+      <h1>Bienvenue, <span id="user-name"></span></h1>
       <div class="progress-section">
         <label for="progress-bar">Progression :</label>
         <div class="progress-container">
@@ -34,7 +24,7 @@ if (!isset($_SESSION['user_id'])) {
       </div>
     </div>
 
-    <!-- Boutons centraux -->
+    <!-- Bouton central -->
     <div class="challenge-button">
       <a href="../HTML/challenges.html" class="btn">Challenge TOI !</a>
       <a href="" class="btn">Leaderboard</a>
@@ -42,17 +32,14 @@ if (!isset($_SESSION['user_id'])) {
   </div>
 
   <script>
-    document.getElementById('logoutBtn').addEventListener('click', (event) => {
-        // Empêcher tout comportement par défaut
-        event.preventDefault();
-
-        // Envoyer une requête POST pour déconnexion
-        fetch('../PHP/logout.php', {
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        // Effectuer une requête POST pour déconnexion
+        fetch('logout.php', {
             method: 'POST'
         })
         .then(response => {
             if (response.ok) {
-                // Redirection vers index.html après succès
+                // Rediriger vers index.html après déconnexion
                 window.location.href = '../index.html';
             } else {
                 alert('Erreur lors de la déconnexion.');

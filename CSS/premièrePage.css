@@ -1,116 +1,131 @@
 /* Style global */
+
+
 body {
-    margin: 0;
-    font-family: 'Poppins', Arial, sans-serif;
-    background: linear-gradient(135deg, #000000, #005a00);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Conteneur principal */
-  .container {
-    width: 100%;
-    max-width: 800px;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  /* Section des informations utilisateur */
-  .user-info {
-    margin-bottom: 50px;
-  }
-  
-  .user-info h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  .user-info span {
-    color: #00ff00;
-    font-weight: bold;
-  }
-  
-  /* Barre de progression */
-  .progress-section {
-    text-align: left;
-    margin-top: 20px;
-  }
-  
-  .progress-section label {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    display: block;
-  }
-  
-  .progress-container {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    height: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  #progress-bar {
-    background: linear-gradient(90deg, #00ff00, #007700);
-    height: 100%;
-    width: 0%; /* Dynamique : à ajuster avec JS */
-    transition: width 0.5s ease-in-out;
-    border-radius: 15px;
-  }
-  
-  /* Texte des points */
-  .progress-section p {
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-  
-  /* Bouton central */
-  .challenge-button {
-    margin-top: 50px;
-  }
-  
-  .challenge-button .btn {
-    background: linear-gradient(135deg, #00b400, #005a00);
-    color: white;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .challenge-button .btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-  }
-  
-  .deconnexion-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 100;
-  }
-  
-  .deconnexion-button a {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    text-decoration: none;
-    background: linear-gradient(135deg, #00b400, #005a00);
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  }
-  
-  .deconnexion-button a:hover {
-    background: linear-gradient(135deg, #00b400, #005a00); /* Inversion du dégradé */
-    box-shadow: 0 5px 15px rgba(0, 180, 0, 0.4); /* Effet lumineux vert */
-    color: white;
-  }
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #000000, #005a00);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Conteneur principal */
+.container {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Section des informations utilisateur */
+.user-info {
+  margin-bottom: 50px;
+}
+
+.user-info h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.user-info span {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+/* Barre de progression */
+.progress-section {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.progress-section label {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.progress-container {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+#progress-bar {
+  background: linear-gradient(90deg, #00ff00, #007700);
+  height: 100%;
+  width: 0%; /* Dynamique : à ajuster avec JS */
+  transition: width 0.5s ease-in-out;
+  border-radius: 15px;
+}
+
+/* Texte des points */
+.progress-section p {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* Boutons centraux */
+.challenge-button {
+  margin-top: 50px;
+}
+
+.challenge-button .btn {
+  background: linear-gradient(135deg, #00b400, #005a00);
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.challenge-button .btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+}
+
+/* Style pour le bouton de déconnexion */
+.deconnexion-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.deconnexion-button button {
+  background: linear-gradient(135deg, #ff6b6b, #d10000); /* Dégradé rouge attractif */
+  color: white; /* Texte blanc */
+  font-size: 1.1rem; /* Taille du texte */
+  font-weight: bold; /* Texte en gras */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Pas de bordure */
+  border-radius: 8px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de clic */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3); /* Ombre légère */
+}
+
+/* Effet au survol */
+.deconnexion-button button:hover {
+  transform: translateY(-2px); /* Légère élévation */
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5); /* Ombre plus grande */
+  background: linear-gradient(135deg, #ff4d4d, #b30000); /* Dégradé plus vif */
+}
+
+/* Effet au clic */
+.deconnexion-button button:active {
+  transform: scale(0.95); /* Rétrécissement temporaire */
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4); /* Ombre réduite */
+  background: linear-gradient(135deg, #d10000, #800000); /* Rouge foncé */
+}
+
+

@@ -5,22 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Création de Compte</title>
   <link rel="stylesheet" href="../CSS/creationCompte.css">
+  <style>
+    .password-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .password-container input {
+      flex: 1;
+    }
+
+    .password-container .toggle-password {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: -30px;
+    }
+  </style>
 </head>
 <body>
-
   <div class="back-button">
     <a href="../index.html">Retour</a>
   </div>
 
-
   <div class="form-container">
-    <form action="PHP/test_register.php" method="POST">
-
-
-      
-
-
-
+    <form action="../PHP/register.php" method="POST" onsubmit="return validateForm()">
       <h2>Créer un Compte</h2>
 
       <div class="input-group">
@@ -41,21 +50,29 @@
 
       <div class="input-group">
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required placeholder="Votre mot de passe">
+        <div class="password-container">
+          <input type="password" id="password" name="password" required placeholder="Votre mot de passe">
+          <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password')">
+            👁
+          </button>
+        </div>
         <span id="passwordError" class="error"></span>
       </div>
 
       <div class="input-group">
         <label for="confirmPassword">Confirmer le mot de passe :</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirmez votre mot de passe">
+        <div class="password-container">
+          <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirmez votre mot de passe">
+          <button type="button" class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">
+            👁
+          </button>
+        </div>
         <span id="confirmPasswordError" class="error"></span>
       </div>
 
       <button type="submit" class="btn">Créer un compte</button>
     </form>
   </div>
-
-
 
   <script>
     function validateForm() {
@@ -88,11 +105,20 @@
 
       // Password confirmation validation
       if (password !== confirmPassword) {
-        confirmPasswordError.textContent = "Mot de passe différent";
+        confirmPasswordError.textContent = "Les mots de passe ne correspondent pas.";
         return false;
       }
 
       return true;
+    }
+
+    function togglePasswordVisibility(fieldId) {
+      const passwordField = document.getElementById(fieldId);
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
     }
   </script>
 </body>

@@ -1,6 +1,12 @@
 <?php
 session_start();
-session_destroy();
-header("Location: index.html");
-exit();
+
+// Vérifie si une session existe
+if (isset($_SESSION['user_id'])) {
+    session_unset();  // Supprime les variables de session
+    session_destroy();  // Détruit la session
+    http_response_code(200);  // Succès
+} else {
+    http_response_code(401);  // Non autorisé
+}
 ?>
