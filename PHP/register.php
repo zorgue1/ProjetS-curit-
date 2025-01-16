@@ -34,7 +34,7 @@ try {
     $stmt->execute();
 
     // Redirection après succès
-    header("Location: ../PHP/premièrePage.php");
+    header("Location: premièrePage.php");
     exit();
 } catch (PDOException $e) {
     die("Erreur lors de la création du compte : " . $e->getMessage());
