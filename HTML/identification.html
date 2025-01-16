@@ -5,28 +5,82 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Projet Sécurisé</title>
-  <!-- Lien vers le fichier CSS -->
   <link rel="stylesheet" href="../CSS/identification.css">
   <style>
-    .password-container {
-      display: flex;
-      align-items: center;
+    /* Style pour le popup */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
     }
-    .password-container input {
-      flex: 1;
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      text-align: center;
+      min-width: 300px;
     }
-    .password-container .toggle-password {
-      background: none;
+
+    .popup-header {
+      color: #ff0000;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .popup-content {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .countdown {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #ff0000;
+    }
+
+    .popup-close {
+      background-color: #ff0000;
+      color: white;
       border: none;
+      padding: 8px 20px;
+      border-radius: 5px;
       cursor: pointer;
-      margin-left: -30px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .popup-close:hover {
+      background-color: #cc0000;
     }
   </style>
 </head>
 <body>
-
   <div class="back-button">
     <a href="../index.html">Retour</a>
+  </div>
+
+  <!-- Popup overlay -->
+  <div id="popupOverlay" class="popup-overlay"></div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-header">Échec de connexion</div>
+    <div id="popupContent" class="popup-content"></div>
+    <button class="popup-close" onclick="closePopup()">OK</button>
   </div>
 
   <div class="login-container">
@@ -43,20 +97,67 @@
           <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password')">👁</button>
         </div>
       </div>
-      <button type="submit">Se connecter</button>
+      <button type="submit" id="submitBtn">Se connecter</button>
     </form>
   </div>
 
   <script>
     function togglePasswordVisibility(fieldId) {
       const passwordField = document.getElementById(fieldId);
-      if (passwordField.type === "password") {
-        passwordField.type = "text";
-      } else {
-        passwordField.type = "password";
-      }
+      passwordField.type = passwordField.type === "password" ? "text" : "password";
     }
-  </script>
 
+    function showPopup(message) {
+      document.getElementById('popupContent').innerHTML = message;
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('popupOverlay').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+
+    function startCountdown(seconds) {
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      
+      let timeLeft = seconds;
+      showPopup(`Compte bloqué. Veuillez patienter <span class="countdown">${timeLeft}</span> secondes avant de réessayer.`);
+      
+      const timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('popupContent').innerHTML = 
+          `Compte bloqué. Veuillez patienter <span class="countdown">${timeLeft}</span> secondes avant de réessayer.`;
+        
+        if (timeLeft < 0) {
+          clearInterval(timer);
+          closePopup();
+          submitBtn.disabled = false;
+        }
+      }, 1000);
+    }
+
+    // Fonction pour obtenir les paramètres de l'URL
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        error: params.get('error'),
+        attempts: params.get('attempts'),
+        time: params.get('time')
+      };
+    }
+
+    // Vérifier les erreurs au chargement de la page
+    window.onload = function() {
+      const params = getUrlParams();
+      
+      if (params.error === 'auth' && params.attempts) {
+        showPopup(`Il vous reste ${params.attempts} tentative(s) avant d'être bloqué 30 secondes`);
+      } else if (params.error === 'locked' && params.time) {
+        startCountdown(parseInt(params.time));
+      }
+    };
+  </script>
 </body>
 </html>
