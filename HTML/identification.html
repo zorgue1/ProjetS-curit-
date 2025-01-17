@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Empêcher la mise en cache -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Login - Projet Sécurisé</title>
   <link rel="stylesheet" href="../CSS/identification.css">
   <style>
-    /* Style pour le popup */
     .popup-overlay {
       display: none;
       position: fixed;
@@ -73,10 +76,8 @@
     <a href="../index.html">Retour</a>
   </div>
 
-  <!-- Popup overlay -->
   <div id="popupOverlay" class="popup-overlay"></div>
 
-  <!-- Popup -->
   <div id="popup" class="popup">
     <div class="popup-header">Échec de connexion</div>
     <div id="popupContent" class="popup-content"></div>
@@ -84,16 +85,16 @@
   </div>
 
   <div class="login-container">
-    <form action="../PHP/login.php" method="POST">
+    <form id="loginForm" action="../PHP/login.php" method="POST" autocomplete="off">
       <h2>Connexion</h2>
       <div class="input-group">
         <label for="email">Adresse e-mail :</label>
-        <input type="email" id="email" name="email" required placeholder="Votre e-mail">
+        <input type="email" id="email" name="email" required placeholder="Votre e-mail" autocomplete="off">
       </div>
       <div class="input-group">
         <label for="password">Mot de passe :</label>
         <div class="password-container">
-          <input type="password" id="password" name="password" required placeholder="Votre mot de passe">
+          <input type="password" id="password" name="password" required placeholder="Votre mot de passe" autocomplete="off">
           <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password')">👁</button>
         </div>
       </div>
@@ -102,6 +103,38 @@
   </div>
 
   <script>
+    // Empêcher l'accès à la page via le bouton retour après déconnexion
+    window.onpageshow = function(event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    };
+
+    // Vider le formulaire au chargement de la page
+    window.onload = function() {
+      document.getElementById('loginForm').reset();
+      checkSession();
+      
+      const params = getUrlParams();
+      if (params.error === 'auth' && params.attempts) {
+        showPopup(`Il vous reste ${params.attempts} tentative(s) avant d'être bloqué 30 secondes`);
+      } else if (params.error === 'locked' && params.time) {
+        startCountdown(parseInt(params.time));
+      }
+    };
+
+    // Vérifier si l'utilisateur est déjà connecté
+    function checkSession() {
+      fetch('../PHP/check_session.php')
+        .then(response => response.json())
+        .then(data => {
+          if (data.logged_in) {
+            window.location.href = '../PHP/premièrePage.php';
+          }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+
     function togglePasswordVisibility(fieldId) {
       const passwordField = document.getElementById(fieldId);
       passwordField.type = passwordField.type === "password" ? "text" : "password";
@@ -138,7 +171,6 @@
       }, 1000);
     }
 
-    // Fonction pour obtenir les paramètres de l'URL
     function getUrlParams() {
       const params = new URLSearchParams(window.location.search);
       return {
@@ -147,17 +179,6 @@
         time: params.get('time')
       };
     }
-
-    // Vérifier les erreurs au chargement de la page
-    window.onload = function() {
-      const params = getUrlParams();
-      
-      if (params.error === 'auth' && params.attempts) {
-        showPopup(`Il vous reste ${params.attempts} tentative(s) avant d'être bloqué 30 secondes`);
-      } else if (params.error === 'locked' && params.time) {
-        startCountdown(parseInt(params.time));
-      }
-    };
   </script>
 </body>
 </html>
