@@ -96,7 +96,12 @@ $stmt->bind_param("ssssssss", $name, $category, $level, $description, $file_name
             
                 $challenge_id = intval($_POST['challenge_id']);
                 $submitted_flag = trim($_POST['flag']);
-                $user_id = 1; // Remplacez par l'ID réel de l'utilisateur connecté (par exemple via $_SESSION)
+                session_start();
+                if (!isset($_SESSION['user_id'])) {
+                    die("Erreur : utilisateur non connecté !");
+                }
+                $user_id = $_SESSION['user_id'];
+                
             
                 // Étape 1 : Vérification du flag correct
                 $stmt = $conn->prepare("SELECT flag, level FROM challenges WHERE id = ?");
