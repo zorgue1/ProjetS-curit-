@@ -1,0 +1,11 @@
+Platform : Windows 11
+IDE : PyCharm
+Python : 3.10
+Python interpreter : Anaconda 3
+
+Run the `webCTF.py` file, and the CTF challenge page will automatically open in the computer's default browser.
+
+**Solution:**
+1. Navigate to the CTF challenge webpage.
+2. Open the browser's developer tools.
+3. In the "Console" tab, input the code from the `Solution` file.

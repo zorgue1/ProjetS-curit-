@@ -1,0 +1,20 @@
+Platform : Windows 11
+IDE : PyCharm
+Python : 3.10
+Python interpreter : Anaconda 3
+
+Execution Instructions:
+There is a picture named `original.png` in the project files.
+After running `challenge.py`, a new picture `challenge.png` will be generated.
+Give `challenge.png` to the challenger and ask them to find the hidden secret in the image.
+
+**Solution Steps:**
+1. **Open the image and retrieve the pixels**
+   - Convert the image to RGB mode and iterate through all the R, G, B channels of the pixels.
+2. **Extract the least significant bits (LSB)**
+   - Perform the `& 1` operation on each channel to get the corresponding bit (0 or 1) and concatenate them into a long binary string.
+3. **Reconstruct the text**
+   - Divide the binary string into 8-bit segments, convert each segment to an ASCII character, and concatenate them into a string.
+4. **Cut off the terminator**
+   - When the predefined terminator (e.g., `###EOF###`) is detected, discard the content after it to obtain the final hidden message.
+For details, see the `solution.py` file.
