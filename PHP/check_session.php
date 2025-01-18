@@ -1,4 +1,7 @@
 <?php
+
+require_once 'security.php';
+
 session_start();
 
 header('Content-Type: application/json');

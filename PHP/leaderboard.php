@@ -1,4 +1,7 @@
 <?php
+
+require_once 'security.php';
+
 // Connexion à la base de données
 $servername = "localhost";
 $username = "root";

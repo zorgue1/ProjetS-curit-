@@ -1,4 +1,7 @@
 <?php
+
+require_once 'security.php';
+
 session_start();
 
 // Si l'utilisateur n'est pas connecté, rediriger vers index.html
