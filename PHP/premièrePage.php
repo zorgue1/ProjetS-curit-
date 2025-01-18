@@ -1,7 +1,4 @@
 <?php
-
-require_once 'security.php';
-
 session_start();
 
 // Si l'utilisateur n'est pas connecté, rediriger vers index.html
@@ -9,6 +6,31 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../index.html');
     exit();
 }
+
+// Connexion à la base de données
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ctf_challenge";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Vérifier la connexion
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Récupérer le score total de l'utilisateur
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT SUM(score) as total_score FROM user_scores WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$total_score = $row['total_score'] ?? 0; // Si pas de score, on met 0 par défaut
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -28,19 +50,15 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Informations de l'utilisateur -->
     <div class="user-info">
       <h1>Bienvenue, <span id="user-name"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?></span></h1>
-      <div class="progress-section">
-        <label for="progress-bar">Progression :</label>
-        <div class="progress-container">
-          <div id="progress-bar" style="width: 30%;"></div>
-        </div>
-        <p>3 points sur 10</p>
+      <div class="score-section">
+        <p>Score total : <?php echo $total_score; ?> points</p>
       </div>
     </div>
 
     <!-- Boutons centraux -->
     <div class="challenge-button">
       <a href="../PHP/category&challenge.php" class="btn">Challenge TOI !</a>
-       <a href="../PHP/leaderboard.php" class="btn">Leaderboard</a>
+      <a href="../PHP/leaderboard.php" class="btn">Leaderboard</a>
     </div>
   </div>
 
