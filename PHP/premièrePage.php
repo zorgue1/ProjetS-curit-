@@ -37,7 +37,7 @@ if (!isset($_SESSION['user_id'])) {
     <!-- Boutons centraux -->
     <div class="challenge-button">
       <a href="../PHP/category&challenge.php" class="btn">Challenge TOI !</a>
-      <a href="../PHP/leaderboard.php" class="btn">Leaderboard</a>
+       <a href="../PHP/leaderboard.php" class="btn">Leaderboard</a>
     </div>
   </div>
 

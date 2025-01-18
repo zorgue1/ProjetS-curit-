@@ -19,3 +19,7 @@ Ce qu'il y a a faire pour lundi :
 - page leadbord accessible depuis la "premièrePage.html" ainsi que tout les header
 - essayer de mettre une base de donnée en fonction des points pour le leadboard
 - faire un système automatique qui nous permettra de récupérer les challenges des projets 2
+
+
+ (17/01/2025)
+ Faire en sorte de ne pas pouvoir revenir avec les flèches sur une page de session d'un utilisateur une fois déconnecté
