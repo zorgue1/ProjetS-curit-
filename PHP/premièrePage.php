@@ -49,11 +49,15 @@ $conn->close();
   <div class="container">
     <!-- Informations de l'utilisateur -->
     <div class="user-info">
-      <h1>Bienvenue, <span id="user-name"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?></span></h1>
+    <h1>Bienvenue, <span id="user-name"><?php echo htmlspecialchars($_SESSION['user_name'] ?? 'Utilisateur'); ?></span></h1>
       <div class="score-section">
-        <p>Score total : <?php echo $total_score; ?> points</p>
-      </div>
+        <div class="score-label">Score total</div>
+        <div class="score-value">
+            <?php echo $total_score; ?>
+            <span class="score-unit">pts</span>
+        </div>
     </div>
+  </div>
 
     <!-- Boutons centraux -->
     <div class="challenge-button">
