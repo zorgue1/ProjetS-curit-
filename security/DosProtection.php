@@ -3,7 +3,7 @@ class DosProtection {
     private $db;
     private $cache;
     private $window_size = 60; // Fenêtre de temps en secondes
-    private $max_requests = 100; // Nombre maximum de requêtes
+    private $max_requests = 50; // Nombre maximum de requêtes
     private $blacklist_duration = 300; // Durée du blacklist en secondes
 
     public function __construct() {
