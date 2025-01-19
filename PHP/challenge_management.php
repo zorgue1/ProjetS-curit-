@@ -93,15 +93,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $file_path = '';
         $description_file = '';
 
+        $maxFileSize = 15 * 1024 * 1024; // Limite de taille : 12 Mo
+
+        // Vérifiez la taille du fichier principal
         if (!empty($_FILES["file"]["name"])) {
+            if ($_FILES["file"]["size"] > $maxFileSize) {
+                die("Erreur : la taille du fichier dépasse la limite autorisée de 12 Mo.");
+            }
             $file_path = basename($_FILES["file"]["name"]);
             move_uploaded_file($_FILES["file"]["tmp_name"], $target_dir . $file_path);
         }
-
+        
+        // Vérifiez la taille du fichier de description
         if (!empty($_FILES["description_file"]["name"])) {
+            if ($_FILES["description_file"]["size"] > $maxFileSize) {
+                die("Erreur : la taille du fichier de description dépasse la limite autorisée de 12 Mo.");
+            }
             $description_file = basename($_FILES["description_file"]["name"]);
             move_uploaded_file($_FILES["description_file"]["tmp_name"], $target_dir . $description_file);
         }
+        
 
         $stmt = $conn->prepare("INSERT INTO challenges (name, category, level, description, file_path, description_file, flag, created_at) VALUES (:name, :category, :level, :description, :file_path, :description_file, :flag, NOW())");
         $stmt->bindParam(':name', $name);
