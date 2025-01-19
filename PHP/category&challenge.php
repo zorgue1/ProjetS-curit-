@@ -184,20 +184,45 @@ $result_challenges = $conn->query($sql_challenges);
 </head>
 <body>
 
-
 <header>
     <div class="navbar">
+    <button class="back-button hidden" onclick="showCategories()">Back to Categories</button>
         <div class="nav-buttons">
             <button onclick="window.location.href='category&challenge.php'">Catégories</button>
             <button onclick="window.location.href='leaderboard.php'">Leaderboard</button>
-            <button onclick="window.location.href='premièrePage.php'">Mon espace</button>
+            <?php
+// Assurez-vous qu'une session est démarrée
+session_start();
+
+// Vérifiez si l'utilisateur est connecté et récupérez son rôle
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT role FROM users WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($role);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Définir l'URL en fonction du rôle
+    $redirect_url = ($role === 'admin') ? 'admin_dashboard.php' : 'premièrePage.php';
+} else {
+    // Par défaut, si l'utilisateur n'est pas connecté
+    $redirect_url = 'login.php';
+}
+?>
+<button onclick="window.location.href='<?php echo $redirect_url; ?>'">Mon espace</button>
+
         </div>
+
+ 
+
     </div>
     
 
 </header>
 
-<button class="back-button" onclick="showCategories()">Back to Categories</button>
+
 
 
 <h1 class="page-title">
@@ -207,56 +232,7 @@ $result_challenges = $conn->query($sql_challenges);
 <!-- Overlay -->
 <div class="overlay" id="overlay" onclick="hidePopup()"></div>
 
-<button class="button-icon" onclick="showPopup()">+</button>
 
-
-<!-- Form Section -->
-<div class="popup-form" id="popupForm">
-<form method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="create_challenge">
-
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Challenge Name" required autocomplete="off">
-
-    <label for="category">Category</label>
-    <select id="category" name="category" required>
-        <option value="">Select Category</option>
-        <option value="Cryptology">Cryptology</option>
-        <option value="Web">Web</option>
-        <option value="Forensic">Forensic</option>
-        <option value="Network">Network</option>
-    </select>
-
-    <label for="level">Level</label>
-    <select id="level" name="level" required>
-        <option value="">Select Level</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-    </select>
-
-    <label for="description">Description</label>
-    <textarea id="description" name="description" rows="4" placeholder="Enter a description" required autocomplete="off"></textarea>
-
-
-    <label for="description_file">Description File</label>
-    <input type="file" id="description_file" name="description_file">
-
-    <label for="file">File</label>
-    <input type="file" id="file" name="file">
-
-    <label for="flag">Flag</label>
-    <input type="text" id="flag" name="flag" placeholder="Enter the flag here" required autocomplete="off">
-
-
-
-    <button class="form-submit" type="submit">Submit</button>
-</form>
-
-
-
-
-</div>
 
 <!-- Categories -->
 <div class="card-container" id="categoryContainer">
@@ -298,9 +274,11 @@ function showPopup() {
 
 
 function showCategories() {
-    document.getElementById('challengeContainer').classList.add('hidden'); // Masque le conteneur des challenges
-    document.getElementById('categoryContainer').classList.remove('hidden'); // Affiche le conteneur des catégories
+    document.getElementById('challengeContainer').classList.add('hidden'); 
+    document.getElementById('categoryContainer').classList.remove('hidden'); 
+    document.querySelector('.back-button').classList.add('hidden'); // Masquer le bouton Back
 }
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -340,10 +318,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 function showChallenges(category) {
-    document.getElementById('categoryContainer').classList.add('hidden');
-    document.getElementById('challengeContainer').classList.remove('hidden');
+    document.getElementById('categoryContainer').classList.add('hidden'); 
+    document.getElementById('challengeContainer').classList.remove('hidden'); 
+    document.querySelector('.back-button').classList.remove('hidden'); // Afficher le bouton Back
+    
+
 
     const challengeCards = document.getElementById('challengeCards');
     challengeCards.innerHTML = '';

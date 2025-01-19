@@ -15,7 +15,7 @@ header {
     background: #1e1e1e;
     padding: 10px 20px;
     display: flex;
-    justify-content: flex-end; /* Aligne les boutons à droite */
+    justify-content: flex-end; /* Aligne les boutons Ã  droite */
     align-items: center;
     z-index: 1000; 
 }
@@ -23,7 +23,7 @@ header {
 
 .nav-buttons {
     display: flex;
-    justify-content: flex-end; /* Aligne les boutons à droite */
+    justify-content: flex-end; /* Aligne les boutons Ã  droite */
     gap: 10px; /* Espacement entre les boutons */
 }
 
@@ -51,9 +51,9 @@ header {
     margin: 40px 0 20px; /* Espace en haut et en bas */
     line-height: 1.4;
     font-family: 'Poppins', sans-serif; /* Font moderne */
-    background: linear-gradient(90deg, #FFD700, #FF8C00); /* Dégradé doré */
-    -webkit-background-clip: text; /* Clip dégradé au texte */
-    -webkit-text-fill-color: transparent; /* Remplit le texte avec le dégradé */
+    background: linear-gradient(90deg, #FFD700, #FF8C00); /* DÃ©gradÃ© dorÃ© */
+    -webkit-background-clip: text; /* Clip dÃ©gradÃ© au texte */
+    -webkit-text-fill-color: transparent; /* Remplit le texte avec le dÃ©gradÃ© */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Ombre subtile */
     animation: fadeIn 1.5s ease-in-out; /* Animation d'apparition */
 }

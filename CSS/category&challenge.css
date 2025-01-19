@@ -223,8 +223,7 @@ body, html {
 
 
 .back-button {
-    position: relative; /* Position relative pour ne pas interférer avec le header */
-    margin: 20px 0 0 20px; /* Espace de 20px sous le header et à gauche */
+    margin: 0; /* Supprime toute marge */
     padding: 10px 20px;
     background: linear-gradient(90deg, #32CD32, #228B22); /* Dégradé vert */
     color: white;
@@ -234,8 +233,10 @@ body, html {
     border-radius: 8px;
     text-decoration: none;
     text-align: center;
-    z-index: 10; /* Assure que le bouton reste visible */
+    z-index: 10;
+    order: -1; /* Place le bouton en premier dans le flexbox */
 }
+
 
 .back-button:hover {
     background: linear-gradient(90deg, #228B22, #32CD32); /* Changement de dégradé au survol */
@@ -280,10 +281,18 @@ header {
     color: white;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center;
+    padding: 10px 20px;
+    background: #1e1e1e; /* Couleur de fond du header */
+}
+
+
 .nav-buttons {
     display: flex;
-    justify-content: flex-end; /* Aligne les boutons à droite */
-    gap: 10px; /* Espacement entre les boutons */
+    gap: 10px;
 }
 
 .nav-buttons button {
@@ -618,3 +627,19 @@ form button:hover {
     visibility: hidden;
 }
 
+
+
+header .back-button {
+    background-color: #32CD32;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+header .back-button :hover {
+    background-color: #228B22;
+}

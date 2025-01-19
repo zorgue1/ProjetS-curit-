@@ -35,7 +35,29 @@ $result = $conn->query($sql);
             <div class="nav-buttons">
                 <button onclick="window.location.href='category&challenge.php'">Catégories</button>
                 <button onclick="window.location.href='leaderboard.php'">Leaderboard</button>
-                <button onclick="window.location.href='premièrePage.php'">Mon espace</button>
+                <?php
+// Assurez-vous qu'une session est démarrée
+session_start();
+
+// Vérifiez si l'utilisateur est connecté et récupérez son rôle
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $stmt = $conn->prepare("SELECT role FROM users WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->bind_result($role);
+    $stmt->fetch();
+    $stmt->close();
+
+    // Définir l'URL en fonction du rôle
+    $redirect_url = ($role === 'admin') ? 'admin_dashboard.php' : 'premièrePage.php';
+} else {
+    // Par défaut, si l'utilisateur n'est pas connecté
+    $redirect_url = 'login.php';
+}
+?>
+<button onclick="window.location.href='<?php echo $redirect_url; ?>'">Mon espace</button>
+
             </div>
         </div>
     </header>
