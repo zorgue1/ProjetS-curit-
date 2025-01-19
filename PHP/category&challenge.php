@@ -191,7 +191,7 @@ $result_challenges = $conn->query($sql_challenges);
     <div class="navbar">
     <button class="back-button hidden" onclick="showCategories()">Back to Categories</button>
         <div class="nav-buttons">
-            <button onclick="window.location.href='category&challenge.php'">Catégories</button>
+            <button onclick="window.location.href='forum.php'">Forum</button>
             <button onclick="window.location.href='leaderboard.php'">Leaderboard</button>
             <?php
 // Assurez-vous qu'une session est démarrée
