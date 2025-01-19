@@ -35,32 +35,45 @@ body {
   font-weight: bold;
 }
 
-/* Barre de progression */
-.progress-section {
-  text-align: left;
-  margin-top: 20px;
+.score-section {
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 400px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.progress-section label {
+.score-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(0, 255, 0, 0.3);
+}
+
+.score-label {
   font-size: 1.2rem;
+  color: #8aff8a;
   margin-bottom: 10px;
-  display: block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.progress-container {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  height: 20px;
-  position: relative;
-  overflow: hidden;
+.score-value {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #00ff00;
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  margin: 0;
+  font-family: 'Monospace', 'Courier New', monospace;
 }
 
-#progress-bar {
-  background: linear-gradient(90deg, #00ff00, #007700);
-  height: 100%;
-  width: 0%; /* Dynamique : à ajuster avec JS */
-  transition: width 0.5s ease-in-out;
-  border-radius: 15px;
+.score-unit {
+  font-size: 1.5rem;
+  color: #8aff8a;
+  margin-left: 5px;
 }
 
 /* Texte des points */

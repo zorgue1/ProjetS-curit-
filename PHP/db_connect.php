@@ -1,4 +1,7 @@
 <?php
+
+require_once 'security.php';
+
 $host = "localhost";
 $username = "root";
 $password = ""; // Par défaut, pas de mot de passe sous XAMPP
